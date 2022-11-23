@@ -13,14 +13,26 @@ const port = 8080;
 //   res.write("Formular übermittelt");
 //   res.end('End of Message to Browser!');
 // });
+app.use(cors())
 
 app.get('/', (req, res) => {
-  res.send('Get success')  
+  response = res.send({
+  'Get' :  'Success'
+  
+  })  
+  console.log("Get Request Successful")
 })
 
-app.use(cors())
+app.post('/post-test', (req, res) => {
+  console.log(req.method);
+  console.log(req.url);
+  console.log(req.hostname);
+  console.log(req.body);
+  res.send('Post arrived');
+})
+
 
 
 app.listen(port, () => {
-  console.log("listening on Port 3000");
+  console.log("listening on Port 8080");
 })
