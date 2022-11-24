@@ -1,9 +1,8 @@
 // TODO: Try soxket -> https://docs.python.org/3/howto/sockets.html
-const http = require('http');
 const fs = require('fs');
 const express = require('express');
+const bp = require('body-parser')
 const cors = require('cors');
-const { response } = require('express');
 const app = express();
 const port = 8080;
 // const server = http.createServer(function(req, res) {
@@ -15,6 +14,8 @@ const port = 8080;
 //   res.end('End of Message to Browser!');
 // });
 app.use(cors());
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 
 
@@ -37,6 +38,12 @@ app.post('/post-test', (req, res) => {
   console.log(req.hostname);
   console.log(req.body);
   res.send('Post arrived');
+})
+
+app.put('/put-test', (req, res) => {
+  const newJSON = req.body;
+  console.log("Updated JSON vom Client:  ",newJSON)
+  res.send("PUT arrived")
 })
 
 
