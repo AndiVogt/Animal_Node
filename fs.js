@@ -30,19 +30,11 @@ app.get('/get-test', (req, res) => {
     });
 })
 
-app.post('/post-test', (req, res) => {
-  console.log(req.method);
-  console.log(req.url);
-  console.log(req.content);
-  console.log(req.text);
-  console.log(req.hostname);
-  console.log(req.body);
-  res.send('Post arrived');
-})
 
 app.put('/put-test', (req, res) => {
   const newJSON = req.body;
-  console.log("Updated JSON vom Client:  ",newJSON)
+  var jsonString = JSON.stringify(newJSON, null, 2);
+  fs.writeFile('./data.json', jsonString);
   res.send("PUT arrived")
 })
 
