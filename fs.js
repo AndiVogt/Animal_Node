@@ -34,7 +34,9 @@ app.get('/get-test', (req, res) => {
 app.put('/put-test', (req, res) => {
   const newJSON = req.body;
   var jsonString = JSON.stringify(newJSON, null, 2);
-  fs.writeFile('./data.json', jsonString);
+  fs.writeFile('./data.json', jsonString, function(err, result){
+    if (err) console.log('error', err);
+  });
   res.send("PUT arrived")
 })
 
